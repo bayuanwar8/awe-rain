@@ -13,6 +13,11 @@ one slow drip in the tin cup by the door.
 The house is dry.
 Sleep takes you between two drops.`;
 
+// RULES: entry.txt must be 1–280 characters (Unicode code points), not only
+// white space. Count code points, not bytes, so a multi-byte character counts once.
+const len = [...ENTRY].length;
+if (len < 1 || len > 280) throw new Error(`entry length ${len} outside 1–280 code points`);
+
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "entry.txt"), ENTRY, "utf8");
